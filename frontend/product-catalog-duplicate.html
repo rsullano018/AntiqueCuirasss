@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - Antique Cuirass</title>
+    <meta name="description" content="Browse our complete collection of authentic military antiques, cuirasses, and historical artifacts.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        /* User dropdown styles */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-dropdown-toggle {
+            background: none;
+            border: none;
+            color: #8B4513;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .user-dropdown-toggle:hover {
+            background-color: rgba(139, 69, 19, 0.1);
+        }
+        
+        .user-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 150px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .user-dropdown-menu.show {
+            display: block;
+        }
+        
+        .user-dropdown-item {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        
+        .user-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .user-dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .user-dropdown-item.logout {
+            color: #e74c3c;
+        }
+        
+        .user-dropdown-item.logout:hover {
+            background-color: #fdf2f2;
+        }
+        
+        /* Hide login link when user is logged in */
+        .user-menu .login-link.hidden {
+            display: none;
+        }
+        
+        /* Show user dropdown when user is logged in */
+        .user-menu .user-dropdown.hidden {
+            display: none;
+        }
+    </style>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="customer-dashboard.html">
+                        <h1>Antique Cuirass</h1>
+                        <span class="tagline">Authentic Military Antiques</span>
+                    </a>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="customer-dashboard.html">Home</a></li>
+                        <li><a href="product-catalog-duplicate.html" class="active">Products</a></li>
+                        <li><a href="our-team-duplicate.html">Our Team</a></li>
+                        <li><a href="contact-duplicate.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="search-input" placeholder="Search antiques...">
+                        <button class="search-btn" id="search-btn">🔍</button>
+                    </div>
+                    <a href="cart.html" class="cart-link">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <div class="user-dropdown" id="user-dropdown">
+                            <button class="user-dropdown-toggle" id="user-dropdown-toggle">
+                                <span id="user-name">User</span> ▼
+                            </button>
+                            <div class="user-dropdown-menu" id="user-dropdown-menu">
+                                <a href="#" class="user-dropdown-item" id="profile-link">Profile</a>
+                                <a href="#" class="user-dropdown-item logout" id="logout-link">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="catalog-main">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Product Catalog</h1>
+                <p>Discover our complete collection of authentic military antiques</p>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="catalog-controls">
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="condition-filter">Condition:</label>
+                        <select id="condition-filter">
+                            <option value="">All Conditions</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="price-range">Price Range:</label>
+                        <select id="price-range">
+                            <option value="">All Prices</option>
+                            <option value="1000">Under $1,000</option>
+                            <option value="2500">Under $2,500</option>
+                            <option value="5000">Under $5,000</option>
+                            <option value="10000">Under $10,000</option>
+                            <option value="25000">Under $25,000</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="era-filter">Era:</label>
+                        <select id="era-filter">
+                            <option value="">All Eras</option>
+                            <option value="Medieval">Medieval</option>
+                            <option value="Renaissance">Renaissance</option>
+                            <option value="Napoleonic">Napoleonic</option>
+                            <option value="Victorian">Victorian</option>
+                            <option value="World War I">World War I</option>
+                            <option value="World War II">World War II</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-secondary" id="clear-filters">Clear Filters</button>
+                </div>
+                
+                <div class="sort-section">
+                    <label for="sort-by">Sort by:</label>
+                    <select id="sort-by">
+                        <option value="name">Name A-Z</option>
+                        <option value="name-desc">Name Z-A</option>
+                        <option value="price">Price Low-High</option>
+                        <option value="price-desc">Price High-Low</option>
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Results Info -->
+            <div class="results-info">
+                <div class="results-count">
+                    <span id="results-count">Loading products...</span>
+                </div>
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid" title="Grid View">⊞</button>
+                    <button class="view-btn" data-view="list" title="List View">☰</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="product-grid" id="product-grid">
+                <div class="loading">Loading products...</div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be generated dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Antique Cuirass</h3>
+                    <p>Your trusted source for authentic military antiques and historical artifacts.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="product-catalog-duplicate.html">All Products</a></li>
+                        <li><a href="about-duplicate.html">About Us</a></li>
+                        <li><a href="contact-duplicate.html">Contact</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?id=1">Military Antiques</a></li>
+                        <li><a href="category.html?id=2">Medieval Armor</a></li>
+                        <li><a href="category.html?id=3">Cuirasses</a></li>
+                        <li><a href="category.html?id=4">Helmets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Antique Cuirass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/api/api-client.js?v=202509190455"></script>
+    <script src="assets/js/components/cart-manager.js?v=202509190455"></script>
+    <script src="assets/js/components/product-filter.js"></script>
+    <script src="assets/js/pages/catalog.js?v=202509190455"></script>
+    <script src="assets/js/main.js?v=202509190455"></script>
+    <script>
+        let currentUser = null;
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Product catalog duplicate page loaded');
+            
+            try {
+                // Check if user is logged in
+                const response = await apiClient.getProfile();
+                if (response.success) {
+                    currentUser = response.data;
+                    updateUserInterface(currentUser);
+                }
+            } catch (error) {
+                console.log('User not logged in or error:', error);
+                // User not logged in, show login link
+            }
+            
+            // Initialize user dropdown functionality
+            initializeUserDropdown();
+        });
+        
+        function updateUserInterface(user) {
+            // Update user dropdown with user info
+            const userDropdown = document.getElementById('user-dropdown');
+            const userName = document.getElementById('user-name');
+            
+            userDropdown.classList.remove('hidden');
+            userName.textContent = user.FirstName || user.Username;
+        }
+        
+        function initializeUserDropdown() {
+            const dropdownToggle = document.getElementById('user-dropdown-toggle');
+            const dropdownMenu = document.getElementById('user-dropdown-menu');
+            const profileLink = document.getElementById('profile-link');
+            const logoutLink = document.getElementById('logout-link');
+            
+            if (!dropdownToggle) return;
+            
+            // Toggle dropdown
+            dropdownToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                dropdownMenu.classList.remove('show');
+            });
+            
+            // Profile link
+            profileLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentUser && currentUser.Role === 'customer') {
+                    window.location.href = 'customer-dashboard.html';
+                } else if (currentUser && currentUser.Role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (currentUser && currentUser.Role === 'content_manager') {
+                    window.location.href = 'content-manager-dashboard.html';
+                }
+            });
+            
+            // Logout link
+            logoutLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                logout();
+            });
+        }
+        
+        async function logout() {
+            try {
+                await apiClient.logout();
+                showMessage('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Logout error:', error);
+                // Even if API fails, clear local data and redirect
+                localStorage.clear();
+                sessionStorage.clear();
+                showMessage('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        }
+        
+        function showMessage(message, type = 'info') {
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            messageDiv.textContent = message;
+            
+            // Add styles
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            
+            // Set background color based on type
+            switch (type) {
+                case 'success':
+                    messageDiv.style.backgroundColor = '#27ae60';
+                    break;
+                case 'error':
+                    messageDiv.style.backgroundColor = '#e74c3c';
+                    break;
+                case 'warning':
+                    messageDiv.style.backgroundColor = '#f39c12';
+                    break;
+                default:
+                    messageDiv.style.backgroundColor = '#3498db';
+            }
+            
+            // Add to page
+            document.body.appendChild(messageDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

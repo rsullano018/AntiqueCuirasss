@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Profile - Antique Cuirass</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 4px; white-space: pre-wrap; }
+        button { background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Test Profile API</h1>
+    
+    <button onclick="testProfile()">Test Profile</button>
+    
+    <div id="result" class="result"></div>
+
+    <script src="assets/js/api/api-client.js"></script>
+    <script>
+        async function testProfile() {
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.textContent = 'Testing profile API...\n\n';
+            
+            try {
+                const response = await apiClient.getProfile();
+                resultDiv.textContent += `SUCCESS!\n`;
+                resultDiv.textContent += `Response: ${JSON.stringify(response, null, 2)}\n\n`;
+                
+                if (response.success) {
+                    const user = response.data;
+                    resultDiv.textContent += `User Role: ${user.Role}\n`;
+                    resultDiv.textContent += `Is Admin: ${user.Role === 'admin'}\n`;
+                    
+                    if (user.Role === 'admin') {
+                        resultDiv.textContent += `\nShould be able to access admin dashboard!\n`;
+                    }
+                }
+            } catch (error) {
+                resultDiv.textContent += `ERROR: ${error.message}\n`;
+            }
+        }
+    </script>
+</body>
+</html>

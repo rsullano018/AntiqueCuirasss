@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antique Cuirass - Customer Dashboard</title>
+    <meta name="description" content="Discover authentic antique military equipment including French Napoleonic cuirasses, medieval armor, and historical weapons.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        /* User dropdown styles */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-dropdown-toggle {
+            background: none;
+            border: none;
+            color: #8B4513;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .user-dropdown-toggle:hover {
+            background-color: rgba(139, 69, 19, 0.1);
+        }
+        
+        .user-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 150px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .user-dropdown-menu.show {
+            display: block;
+        }
+        
+        .user-dropdown-item {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        
+        .user-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .user-dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .user-dropdown-item.logout {
+            color: #e74c3c;
+        }
+        
+        .user-dropdown-item.logout:hover {
+            background-color: #fdf2f2;
+        }
+        
+        /* Hide login link when user is logged in */
+        .user-menu .login-link.hidden {
+            display: none;
+        }
+        
+        /* Show user dropdown when user is logged in */
+        .user-menu .user-dropdown.hidden {
+            display: none;
+        }
+    </style>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="customer-dashboard.html">
+                        <h1>Antique Cuirass</h1>
+                        <span class="tagline">Authentic Military Antiques</span>
+                    </a>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="customer-dashboard.html" class="active">Home</a></li>
+                        <li><a href="product-catalog-duplicate.html">Products</a></li>
+                        <li><a href="our-team-duplicate.html">Our Team</a></li>
+                        <li><a href="contact-duplicate.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="search-input" placeholder="Search antiques...">
+                        <button class="search-btn" id="search-btn">🔍</button>
+                    </div>
+                    <a href="cart.html" class="cart-link">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <div class="user-dropdown" id="user-dropdown">
+                            <button class="user-dropdown-toggle" id="user-dropdown-toggle">
+                                <span id="user-name">User</span> ▼
+                            </button>
+                            <div class="user-dropdown-menu" id="user-dropdown-menu">
+                                <a href="#" class="user-dropdown-item" id="profile-link">Profile</a>
+                                <a href="#" class="user-dropdown-item logout" id="logout-link">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome Back to Your Dashboard</h2>
+            <p>Explore our collection of verified historical artifacts and manage your account.</p>
+            <div class="hero-actions">
+                <a href="product-catalog.html" class="btn btn-primary">Browse Collection</a>
+                <a href="#dashboard-cards" class="btn btn-secondary">Dashboard</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="assets/images/FrenchNapoleonicCuirassier.jpg" alt="French Napoleonic Cuirass" style="width: 100%; height: 360px; object-fit: cover;">
+        </div>
+    </section>
+
+    <!-- Dashboard Cards Section -->
+    
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2>Featured Items</h2>
+            <div class="product-grid" id="featured-products">
+                <!-- Products will be loaded dynamically -->
+                <div class="loading">Loading featured products...</div>
+            </div>
+            <div class="text-center">
+                <a href="product-catalog-duplicate.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Antique Cuirass</h3>
+                    <p>Your trusted source for authentic military antiques and historical artifacts.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="product-catalog-duplicate.html">All Products</a></li>
+                        <li><a href="about-duplicate.html">About Us</a></li>
+                        <li><a href="contact-duplicate.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?id=1">Military Antiques</a></li>
+                        <li><a href="category.html?id=2">Medieval Armor</a></li>
+                        <li><a href="category.html?id=3">Cuirasses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Follow us for updates on new arrivals and historical insights.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Antique Cuirass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/api/api-client.js?v=202509190620"></script>
+    <script src="assets/js/cart-manager.js?v=202509190620"></script>
+    <script src="assets/js/main.js?v=202509190620"></script>
+    <script>
+        let currentUser = null;
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Customer dashboard loaded');
+            
+            try {
+                // Check if user is logged in
+                const response = await apiClient.getProfile();
+                if (response.success) {
+                    currentUser = response.data;
+                    if (currentUser.Role !== 'customer') {
+                        // Redirect non-customers to appropriate dashboard
+                        if (currentUser.Role === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        } else if (currentUser.Role === 'content_manager') {
+                            window.location.href = 'content-manager-dashboard.html';
+                        }
+                        return;
+                    }
+                    updateUserInterface(currentUser);
+                } else {
+                    // User not logged in, redirect to login
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error loading user profile:', error);
+                showMessage('Error loading user information. Please try logging in again.', 'error');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            }
+            
+            // Initialize user dropdown functionality
+            initializeUserDropdown();
+            
+            // Initialize cart manager
+            initializeCart();
+            
+            // Add click handler to cart link
+            const cartLink = document.querySelector('.cart-link');
+            if (cartLink) {
+                cartLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openCart();
+                });
+            }
+        });
+        
+        function updateUserInterface(user) {
+            // Update user dropdown with user info
+            const userDropdown = document.getElementById('user-dropdown');
+            const userName = document.getElementById('user-name');
+            
+            userDropdown.classList.remove('hidden');
+            userName.textContent = user.FirstName || user.Username;
+        }
+        
+        function initializeUserDropdown() {
+            const dropdownToggle = document.getElementById('user-dropdown-toggle');
+            const dropdownMenu = document.getElementById('user-dropdown-menu');
+            const profileLink = document.getElementById('profile-link');
+            const logoutLink = document.getElementById('logout-link');
+            
+            // Toggle dropdown
+            dropdownToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                dropdownMenu.classList.remove('show');
+            });
+            
+            // Profile link
+            profileLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showProfile();
+            });
+            
+            // Logout link
+            logoutLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                logout();
+            });
+        }
+        
+        function showProfile() {
+            if (!currentUser) return;
+            
+            const profileHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80%; overflow-y: auto;">
+                        <h3 style="margin: 0 0 1rem 0; color: #2c3e50;">Your Profile</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">👤 Full Name</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">${currentUser.FirstName} ${currentUser.LastName}</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">🏷️ Username</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">${currentUser.Username}</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">📧 Email</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">${currentUser.Email}</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">👥 Account Type</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">Customer</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">📅 Member Since</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">${new Date(currentUser.DateCreated).toLocaleDateString()}</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button onclick="closeProfileModal()" class="btn btn-secondary">Close</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', profileHTML);
+        }
+        
+        function closeProfileModal() {
+            const modal = document.querySelector('[style*="position: fixed"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        async function logout() {
+            try {
+                await apiClient.logout();
+                showMessage('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Logout error:', error);
+                // Even if API fails, clear local data and redirect
+                localStorage.clear();
+                sessionStorage.clear();
+                showMessage('Logged out successfully!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        }
+        
+        // Cart functionality
+        let cartManager = null;
+        
+        function initializeCart() {
+            // Initialize cart manager if it exists
+            if (window.CartManager) {
+                cartManager = new window.CartManager();
+            }
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                if (cartManager && cartManager.cart) {
+                    const totalItems = cartManager.cart.reduce((sum, item) => sum + item.quantity, 0);
+                    cartCountElement.textContent = totalItems;
+                } else {
+                    // Check localStorage for guest cart
+                    const savedCart = localStorage.getItem('antique_cuirass_cart');
+                    if (savedCart) {
+                        const cart = JSON.parse(savedCart);
+                        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                        cartCountElement.textContent = totalItems;
+                    } else {
+                        cartCountElement.textContent = '0';
+                    }
+                }
+            }
+        }
+        
+        function openCart() {
+            showMessage('Opening your shopping cart...', 'info');
+            setTimeout(() => {
+                showCartModal();
+            }, 500);
+        }
+        
+        function showCartModal() {
+            // Get cart items
+            let cartItems = [];
+            if (cartManager && cartManager.cart) {
+                cartItems = cartManager.cart;
+            } else {
+                // Check localStorage for guest cart
+                const savedCart = localStorage.getItem('antique_cuirass_cart');
+                if (savedCart) {
+                    cartItems = JSON.parse(savedCart);
+                }
+            }
+            
+            let cartItemsHTML = '';
+            let totalPrice = 0;
+            
+            if (cartItems.length === 0) {
+                cartItemsHTML = '<p style="color: #7f8c8d; text-align: center; padding: 2rem;">Your cart is empty</p>';
+            } else {
+                cartItemsHTML = cartItems.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+                    return `
+                        <div style="display: flex; align-items: center; padding: 1rem; border-bottom: 1px solid #eee;">
+                            <div style="width: 60px; height: 60px; background: #f8f9fa; border-radius: 8px; margin-right: 1rem; display: flex; align-items: center; justify-content: center;">
+                                <span style="font-size: 1.5rem;">🛡️</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">${item.productName || 'Product'}</h4>
+                                <p style="margin: 0; color: #7f8c8d;">$${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">$${itemTotal.toFixed(2)}</p>
+                                <button onclick="removeFromCart('${item.id}')" style="background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 0.8rem;">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                cartItemsHTML += `
+                    <div style="padding: 1rem; border-top: 2px solid #8B4513; margin-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin: 0; color: #2c3e50;">Total:</h3>
+                            <h3 style="margin: 0; color: #8B4513;">$${totalPrice.toFixed(2)}</h3>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const cartHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80%; overflow-y: auto;">
+                        <h3 style="margin: 0 0 1rem 0; color: #2c3e50;">Your Shopping Cart</h3>
+                        <div id="cart-items" style="margin-bottom: 1rem;">
+                            ${cartItemsHTML}
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button onclick="closeCartModal()" class="btn btn-secondary">Close</button>
+                            ${cartItems.length > 0 ? '<button onclick="proceedToCheckout()" class="btn btn-success">Checkout</button>' : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', cartHTML);
+        }
+        
+        function closeCartModal() {
+            const modal = document.querySelector('[style*="position: fixed"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function removeFromCart(itemId) {
+            if (cartManager && cartManager.cart) {
+                // Use cart manager to remove item
+                cartManager.removeFromCart(itemId);
+            } else {
+                // Remove from localStorage
+                const savedCart = localStorage.getItem('antique_cuirass_cart');
+                if (savedCart) {
+                    const cart = JSON.parse(savedCart);
+                    const updatedCart = cart.filter(item => item.id !== itemId);
+                    localStorage.setItem('antique_cuirass_cart', JSON.stringify(updatedCart));
+                }
+            }
+            
+            // Update cart count and refresh modal
+            updateCartCount();
+            closeCartModal();
+            setTimeout(() => {
+                showCartModal();
+            }, 100);
+            
+            showMessage('Item removed from cart', 'success');
+        }
+        
+        function proceedToCheckout() {
+            showMessage('Checkout functionality coming soon!', 'info');
+            closeCartModal();
+        }
+        
+        // Test function to add sample items to cart
+        function addTestItemToCart() {
+            const testItem = {
+                id: Date.now().toString(),
+                productId: '1',
+                productName: 'Medieval Knight Helmet',
+                price: 1250.00,
+                quantity: 1,
+                image: '/assets/images/placeholder.jpg'
+            };
+            
+            // Add to localStorage cart
+            const savedCart = localStorage.getItem('antique_cuirass_cart');
+            const cart = savedCart ? JSON.parse(savedCart) : [];
+            cart.push(testItem);
+            localStorage.setItem('antique_cuirass_cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            showMessage('Test item added to cart!', 'success');
+        }
+        
+        // Order History functionality
+        function showOrderHistory() {
+            showMessage('Order history feature coming soon! You can track your orders here.', 'info');
+        }
+        
+        // Wishlist functionality
+        function showWishlist() {
+            showMessage('Wishlist feature coming soon! Save your favorite items for later.', 'info');
+        }
+        
+        // Contact Support functionality
+        function showContactSupport() {
+            const contactHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80%; overflow-y: auto;">
+                        <h3 style="margin: 0 0 1rem 0; color: #2c3e50;">Contact Support</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <p style="color: #7f8c8d; margin-bottom: 1rem;">Need help? Our support team is here to assist you!</p>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">📧 Email Support</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">support@antiquecuirass.com</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">📞 Phone Support</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">+1 (555) 123-4567</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0; font-weight: 600; color: #2c3e50;">🕒 Support Hours</p>
+                                <p style="margin: 0.25rem 0 0 0; color: #7f8c8d;">Monday - Friday: 9 AM - 6 PM EST</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button onclick="closeContactModal()" class="btn btn-secondary">Close</button>
+                            <button onclick="sendSupportEmail()" class="btn">Send Email</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', contactHTML);
+        }
+        
+        function closeContactModal() {
+            const modal = document.querySelector('[style*="position: fixed"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function sendSupportEmail() {
+            showMessage('Email support: support@antiquecuirass.com', 'info');
+            closeContactModal();
+        }
+        
+        function showMessage(message, type = 'info') {
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            messageDiv.textContent = message;
+            
+            // Add styles
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            
+            // Set background color based on type
+            switch (type) {
+                case 'success':
+                    messageDiv.style.backgroundColor = '#27ae60';
+                    break;
+                case 'error':
+                    messageDiv.style.backgroundColor = '#e74c3c';
+                    break;
+                case 'warning':
+                    messageDiv.style.backgroundColor = '#f39c12';
+                    break;
+                default:
+                    messageDiv.style.backgroundColor = '#3498db';
+            }
+            
+            // Add to page
+            document.body.appendChild(messageDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

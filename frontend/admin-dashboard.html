@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Antique Cuirass</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .admin-nav {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: #2980b9;
+        }
+        
+        .nav-button.active {
+            background: #e74c3c;
+        }
+        
+        .admin-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .user-table th,
+        .user-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .user-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .role-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .role-admin {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .role-content-manager {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .role-customer {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-active {
+            color: #27ae60;
+            font-weight: 500;
+        }
+        
+        .status-inactive {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .btn-edit, .btn-delete {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .form-actions {
+            margin-top: 20px;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .success-message {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <p>Manage users, products, and system settings</p>
+        </div>
+        
+        <div class="admin-nav">
+            <button class="nav-button active" onclick="showSection('users')">Users</button>
+            <button class="nav-button" onclick="showSection('products')">Products</button>
+            <button class="nav-button" onclick="showSection('orders')">Orders</button>
+            <button class="nav-button" onclick="logout()">Logout</button>
+        </div>
+        
+        <!-- Users Section -->
+        <div id="users-section" class="admin-section active">
+            <h2>User Management</h2>
+            <div id="message-container"></div>
+            
+            <div style="margin-bottom: 20px;">
+                <button class="btn-primary" onclick="showAddUserForm()">Add New User</button>
+            </div>
+            
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Last Login</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body">
+                    <!-- Users will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Products Section -->
+        <div id="products-section" class="admin-section">
+            <h2>Product Management</h2>
+            <p>Product management features will be implemented here.</p>
+        </div>
+        
+        <!-- Orders Section -->
+        <div id="orders-section" class="admin-section">
+            <h2>Order Management</h2>
+            <p>Order management features will be implemented here.</p>
+        </div>
+    </div>
+    
+    <!-- Add/Edit User Modal -->
+    <div id="user-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 500px;">
+            <h3 id="modal-title">Add User</h3>
+            <form id="user-form">
+                <input type="hidden" id="user-id" value="">
+                
+                <div class="form-group">
+                    <label for="username">Username *</label>
+                    <input type="text" id="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Role *</label>
+                    <select id="role" required>
+                        <option value="customer">Customer</option>
+                        <option value="content_manager">Content Manager</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="isActive" checked> Active
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save User</button>
+                    <button type="button" class="btn-secondary" onclick="closeUserModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="assets/js/api/api-client.js"></script>
+    <script>
+        let currentUser = null;
+        let users = [];
+        
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+        
+        async function checkAuth() {
+            try {
+                const response = await apiClient.getProfile();
+                if (response.success) {
+                    currentUser = response.data;
+                    if (currentUser.Role && currentUser.Role.toLowerCase() !== 'admin') {
+                        console.log('❌ Non-admin user detected, redirecting...');
+                        showMessage('Access denied. Admin privileges required.', 'error');
+                        setTimeout(() => {
+                            // Redirect based on actual role
+                            if (currentUser.Role && currentUser.Role.toLowerCase() === 'customer') {
+                                window.location.href = 'customer-dashboard.html';
+                            } else if (currentUser.Role && currentUser.Role.toLowerCase() === 'content_manager') {
+                                window.location.href = 'content-manager-dashboard.html';
+                            } else {
+                                window.location.href = 'index.html';
+                            }
+                        }, 1000);
+                        return;
+                    }
+                    loadUsers();
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = 'login.html';
+            }
+        }
+        
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        async function loadUsers() {
+            try {
+                const response = await apiClient.getUsers();
+                if (response.success) {
+                    users = response.data;
+                    renderUsersTable();
+                } else {
+                    showMessage('Failed to load users: ' + response.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error loading users: ' + error.message, 'error');
+            }
+        }
+        
+        function renderUsersTable() {
+            const tbody = document.getElementById('users-table-body');
+            tbody.innerHTML = '';
+            
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.UserID}</td>
+                    <td>${user.Username}</td>
+                    <td>${user.Email}</td>
+                    <td>${user.FullName}</td>
+                    <td><span class="role-badge role-${user.Role}">${user.Role.replace('_', ' ').toUpperCase()}</span></td>
+                    <td><span class="status-${user.IsActive ? 'active' : 'inactive'}">${user.IsActive ? 'Active' : 'Inactive'}</span></td>
+                    <td>${user.LastLogin ? new Date(user.LastLogin).toLocaleDateString() : 'Never'}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-edit" onclick="editUser(${user.UserID})">Edit</button>
+                            ${user.UserID !== currentUser.UserID ? `<button class="btn-delete" onclick="deleteUser(${user.UserID})">Delete</button>` : ''}
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function showAddUserForm() {
+            document.getElementById('modal-title').textContent = 'Add User';
+            document.getElementById('user-form').reset();
+            document.getElementById('user-id').value = '';
+            document.getElementById('user-modal').style.display = 'block';
+        }
+        
+        function editUser(userId) {
+            const user = users.find(u => u.UserID == userId);
+            if (!user) return;
+            
+            document.getElementById('modal-title').textContent = 'Edit User';
+            document.getElementById('user-id').value = user.UserID;
+            document.getElementById('username').value = user.Username;
+            document.getElementById('email').value = user.Email;
+            document.getElementById('password').value = ''; // Don't show password
+            document.getElementById('firstName').value = user.FirstName;
+            document.getElementById('lastName').value = user.LastName;
+            document.getElementById('role').value = user.Role;
+            document.getElementById('isActive').checked = user.IsActive;
+            document.getElementById('user-modal').style.display = 'block';
+        }
+        
+        function closeUserModal() {
+            document.getElementById('user-modal').style.display = 'none';
+        }
+        
+        document.getElementById('user-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const userId = document.getElementById('user-id').value;
+            const userData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                role: document.getElementById('role').value,
+                isActive: document.getElementById('isActive').checked
+            };
+            
+            // Add password only for new users
+            if (!userId) {
+                userData.password = document.getElementById('password').value;
+            }
+            
+            try {
+                let response;
+                if (userId) {
+                    response = await apiClient.updateUser(userId, userData);
+                } else {
+                    response = await apiClient.register(userData);
+                }
+                
+                if (response.success) {
+                    showMessage(userId ? 'User updated successfully' : 'User created successfully', 'success');
+                    closeUserModal();
+                    loadUsers();
+                } else {
+                    showMessage('Error: ' + response.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        });
+        
+        async function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete this user?')) {
+                return;
+            }
+            
+            try {
+                const response = await apiClient.deleteUser(userId);
+                if (response.success) {
+                    showMessage('User deleted successfully', 'success');
+                    loadUsers();
+                } else {
+                    showMessage('Error: ' + response.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        }
+        
+        function showMessage(message, type) {
+            const container = document.getElementById('message-container');
+            container.innerHTML = `<div class="${type}-message">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+        
+        async function logout() {
+            try {
+                await apiClient.logout();
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Logout error:', error);
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

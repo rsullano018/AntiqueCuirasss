@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Antique Cuirass</title>
+    <meta name="description" content="Get in touch with Antique Cuirass for questions about our military antiques, authentication services, or general inquiries.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        
+        /* Contact page specific styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-content {
+            padding: 4rem 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .contact-item .icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #8B4513;
+        }
+        
+        .contact-item .content h3 {
+            color: #2c3e50;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .contact-item .content p {
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8B4513;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #8B4513;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #A0522D;
+        }
+        
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .faq-section {
+            margin-top: 4rem;
+        }
+        
+        .faq-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-item h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-item p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>Antique Cuirass</h1>
+                        <span class="tagline">Authentic Military Antiques</span>
+                    </a>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product-catalog.html">Products</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="search-input" placeholder="Search antiques...">
+                        <button class="search-btn" id="search-btn">🔍</button>
+                    </div>
+                    <a href="cart.html" class="cart-link">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <a href="login.html" class="login-link" id="login-link">Login</a>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Have questions about our military antiques? We're here to help with authentication, purchasing, and general inquiries.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="contact-item">
+                        <div class="icon">📧</div>
+                        <div class="content">
+                            <h3>Email Support</h3>
+                            <p>support@antiquecuirass.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon">📞</div>
+                        <div class="content">
+                            <h3>Phone Support</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon">🕒</div>
+                        <div class="content">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9 AM - 6 PM EST<br>
+                            Saturday: 10 AM - 4 PM EST<br>
+                            Sunday: Closed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <div class="content">
+                            <h3>Office Location</h3>
+                            <p>123 Historical Avenue<br>
+                            Museum District<br>
+                            New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon">🔍</div>
+                        <div class="content">
+                            <h3>Authentication Services</h3>
+                            <p>authentication@antiquecuirass.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send us a Message</h2>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="authentication">Authentication Service</option>
+                                <option value="purchase">Purchase Question</option>
+                                <option value="shipping">Shipping & Delivery</option>
+                                <option value="return">Returns & Exchanges</option>
+                                <option value="appraisal">Appraisal Service</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Please provide details about your inquiry..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" id="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>How do you authenticate your artifacts?</h3>
+                        <p>All our artifacts undergo rigorous authentication by our team of expert historians and military specialists. We provide detailed certificates of authenticity and provenance documentation for every piece.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do you offer international shipping?</h3>
+                        <p>Yes, we ship worldwide with full insurance and tracking. International shipping costs and delivery times vary by location. Contact us for specific shipping quotes.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>What is your return policy?</h3>
+                        <p>We offer a 30-day return policy for all purchases. Items must be returned in their original condition with all documentation. Custom authentication services are non-refundable.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do you buy artifacts from collectors?</h3>
+                        <p>Yes, we actively purchase authentic military antiques from private collectors. Contact our authentication team to discuss your items and receive a professional appraisal.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>How long does authentication take?</h3>
+                        <p>Standard authentication typically takes 5-7 business days. Complex items requiring additional research may take up to 2 weeks. Rush services are available for an additional fee.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>Do you offer payment plans?</h3>
+                        <p>Yes, we offer flexible payment plans for purchases over $1,000. Contact us to discuss available options and terms that work for your budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Antique Cuirass</h3>
+                    <p>Your trusted source for authentic military antiques and historical artifacts.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="product-catalog.html">All Products</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?id=1">Military Antiques</a></li>
+                        <li><a href="category.html?id=2">Medieval Armor</a></li>
+                        <li><a href="category.html?id=3">Cuirasses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Follow us for updates on new arrivals and historical insights.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Antique Cuirass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/api/api-client.js?v=202509190620"></script>
+    <script src="assets/js/cart-manager.js?v=202509190620"></script>
+    <script src="assets/js/main.js?v=202509190620"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact page loaded');
+            
+            // Initialize contact form
+            initializeContactForm();
+        });
+        
+        function initializeContactForm() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Disable submit button
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                
+                try {
+                    // Simulate form submission (replace with actual API call)
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    showMessage('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                    form.reset();
+                } catch (error) {
+                    showMessage('Sorry, there was an error sending your message. Please try again.', 'error');
+                } finally {
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+        }
+        
+        function showMessage(message, type = 'info') {
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            messageDiv.textContent = message;
+            
+            // Add styles
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                border-radius: 4px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            
+            // Set background color based on type
+            switch (type) {
+                case 'success':
+                    messageDiv.style.backgroundColor = '#27ae60';
+                    break;
+                case 'error':
+                    messageDiv.style.backgroundColor = '#e74c3c';
+                    break;
+                case 'warning':
+                    messageDiv.style.backgroundColor = '#f39c12';
+                    break;
+                default:
+                    messageDiv.style.backgroundColor = '#3498db';
+            }
+            
+            // Add to page
+            document.body.appendChild(messageDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

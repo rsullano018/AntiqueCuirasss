@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Antique Cuirass</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-button:hover {
+            background: #2980b9;
+        }
+        
+        .login-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .success-message {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .role-selector {
+            margin-bottom: 20px;
+        }
+        
+        .role-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .role-option {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .role-option.selected {
+            border-color: #3498db;
+            background: #ecf0f1;
+        }
+        
+        .role-option h4 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+        }
+        
+        .role-option p {
+            margin: 0;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .register-link {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .register-link:hover {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Antique Cuirass</h1>
+                <p>Please sign in to your account</p>
+            </div>
+            
+            <div id="message-container"></div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="login-button" id="login-button">
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="back-link">
+                <a href="index.html">← Back to Store</a>
+                <br><br>
+                <a href="register.html" class="register-link">Don't have an account? Register here</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/api/api-client.js?v=202509190630"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Login page loaded');
+            
+            // Check for URL parameters and pre-fill form
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            const password = urlParams.get('password');
+            
+            if (username) {
+                document.getElementById('username').value = username;
+            }
+            if (password) {
+                document.getElementById('password').value = password;
+            }
+            
+            // Clear any stored data
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Login form handler
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const loginButton = document.getElementById('login-button');
+                
+                if (!username || !password) {
+                    showMessage('Please enter both username and password', 'error');
+                    return;
+                }
+                
+                loginButton.disabled = true;
+                loginButton.textContent = 'Signing In...';
+                
+                try {
+                    // Try multiple API endpoints
+                    const endpoints = [
+                        '/AntiqueCuirass/backend/login-simple.php',
+                        '/AntiqueCuirass/backend/api/simple-login.php',
+                        '/AntiqueCuirass/backend/api/users.php'
+                    ];
+                    
+                    let success = false;
+                    let response = null;
+                    
+                    for (const endpoint of endpoints) {
+                        try {
+                            console.log(`Trying login endpoint: ${endpoint}`);
+                            const testResponse = await fetch(endpoint, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    username: username,
+                                    password: password
+                                })
+                            });
+                            
+                            console.log(`Response status: ${testResponse.status}`);
+                            const text = await testResponse.text();
+                            console.log(`Response text (first 200 chars): ${text.substring(0, 200)}`);
+                            
+                            // Check if response is HTML (404 page)
+                            if (text.includes('<!DOCTYPE HTML') || text.includes('<html>')) {
+                                console.log(`Endpoint ${endpoint} returned HTML, trying next...`);
+                                continue;
+                            }
+                            
+                            // Try to parse as JSON
+                            try {
+                                response = JSON.parse(text);
+                                console.log(`Endpoint ${endpoint} response:`, response);
+                                if (response.success) {
+                                    success = true;
+                                    console.log('Login successful with endpoint:', endpoint);
+                                    break;
+                                }
+                            } catch (e) {
+                                console.log(`Endpoint ${endpoint} returned invalid JSON: ${text.substring(0, 100)}...`);
+                                continue;
+                            }
+                        } catch (error) {
+                            console.log(`Endpoint ${endpoint} failed: ${error.message}`);
+                            continue;
+                        }
+                    }
+                    
+                    if (success && response) {
+                        // Set token if provided
+                        if (response.data && response.data.token) {
+                            apiClient.setToken(response.data.token);
+                        }
+                        
+                        showMessage('Login successful! Redirecting...', 'success');
+                        
+                        // Redirect based on user role with explicit checks
+                        setTimeout(() => {
+                            const user = response.data.user;
+                            console.log('=== LOGIN REDIRECT DEBUG ===');
+                            console.log('User data:', user);
+                            console.log('User role:', user.Role);
+                            console.log('Role type:', typeof user.Role);
+                            console.log('Role length:', user.Role.length);
+                            console.log('Role comparison admin:', user.Role === 'admin');
+                            console.log('Role comparison content_manager:', user.Role === 'content_manager');
+                            console.log('Role comparison customer:', user.Role === 'customer');
+                            
+                            // Force redirect based on role - no exceptions
+                            const role = user.Role ? user.Role.toLowerCase().trim() : '';
+                            console.log('Processed role:', role);
+                            
+                            if (role === 'admin') {
+                                console.log('✅ FORCE REDIRECTING ADMIN to admin dashboard');
+                                window.location.replace('admin-dashboard.html');
+                            } else if (role === 'content_manager') {
+                                console.log('✅ FORCE REDIRECTING CONTENT MANAGER to content manager dashboard');
+                                window.location.replace('content-manager-dashboard.html');
+                            } else if (role === 'customer') {
+                                console.log('✅ FORCE REDIRECTING CUSTOMER to customer dashboard');
+                                window.location.replace('customer-dashboard.html');
+                            } else {
+                                console.log('❌ Unknown role, redirecting to main page for role:', user.Role);
+                                window.location.replace('index.html');
+                            }
+                        }, 1500);
+                    } else {
+                        showMessage('Login failed: Unable to connect to server. Please check if XAMPP is running.', 'error');
+                    }
+                } catch (error) {
+                    showMessage('Login error: ' + error.message, 'error');
+                } finally {
+                    loginButton.disabled = false;
+                    loginButton.textContent = 'Sign In';
+                }
+            });
+        });
+        
+        function showMessage(message, type) {
+            const container = document.getElementById('message-container');
+            container.innerHTML = `<div class="${type}-message">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

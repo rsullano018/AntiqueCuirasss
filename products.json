@@ -1,0 +1,88 @@
+[
+  {
+    "ProductID": "1",
+    "ProductName": "WWII German M35 Steel Helmet",
+    "Description": "Original WWII German M35 helmet with liner, well-preserved condition, authentic battlefield collectible.",
+    "SKU": "MIL-HELM-1935-GER",
+    "CategoryID": "1",
+    "Era": "World War II",
+    "Material": "Steel, Leather",
+    "Condition": "Very Good",
+    "Price": 6500.00,
+    "OriginalPrice": 8000.00,
+    "Stock": 1,
+    "image": "assets/images/placeholder.jpg"
+  },
+  {
+    "ProductID": "2",
+    "ProductName": "Napoleonic French Cuirass",
+    "Description": "Authentic French heavy cavalry cuirass, brass breastplate with iron backplate, mid-19th century arsenal marks.",
+    "SKU": "FR-CUIRASS-1812",
+    "CategoryID": "3",
+    "Era": "Napoleonic",
+    "Material": "Brass, Iron, Leather",
+    "Condition": "Excellent",
+    "Price": 18500.00,
+    "OriginalPrice": 21500.00,
+    "Stock": 1,
+    "image": "assets/images/placeholder.jpg"
+  },
+  {
+    "ProductID": "3",
+    "ProductName": "Medieval Knight Gauntlets (Pair)",
+    "Description": "Late 15th‑century style articulated gauntlets with fluted knuckle plates and leather glove liners.",
+    "SKU": "MDV-GNT-1490",
+    "CategoryID": "2",
+    "Era": "Medieval",
+    "Material": "Steel, Leather",
+    "Condition": "Very Good",
+    "Price": 4200.00,
+    "OriginalPrice": 0,
+    "Stock": 1,
+    "image": "assets/images/placeholder.jpg"
+  },
+  {
+    "ProductID": "4",
+    "ProductName": "Roman Gladius (Museum Replica)",
+    "Description": "High-quality museum replica of a Pompeii-type gladius with wooden hilt and scabbard fittings.",
+    "SKU": "ROM-GLA-REPL",
+    "CategoryID": "5",
+    "Era": "Classical",
+    "Material": "Steel, Wood, Brass",
+    "Condition": "Excellent",
+    "Price": 950.00,
+    "OriginalPrice": 0,
+    "Stock": 5,
+    "image": "assets/images/placeholder.jpg"
+  },
+  {
+    "ProductID": "5",
+    "ProductName": "Victorian Officer’s Dress Helmet",
+    "Description": "Late 19th‑century British officer’s dress helmet with gilt fittings and horsehair plume.",
+    "SKU": "VIC-HELM-OFC",
+    "CategoryID": "4",
+    "Era": "Victorian",
+    "Material": "Brass, Leather, Horsehair",
+    "Condition": "Good",
+    "Price": 3700.00,
+    "OriginalPrice": 0,
+    "Stock": 1,
+    "image": "assets/images/placeholder.jpg"
+  },
+  {
+    "ProductID": "6",
+    "ProductName": "Samurai Katana (Showa Era)",
+    "Description": "Showa-era Japanese katana with signed tang, later civilian mountings, well-maintained blade.",
+    "SKU": "JP-KTN-SHOWA",
+    "CategoryID": "5",
+    "Era": "20th Century",
+    "Material": "Tamahagane Steel, Ray Skin, Silk",
+    "Condition": "Very Good",
+    "Price": 7800.00,
+    "OriginalPrice": 0,
+    "Stock": 1,
+    "image": "assets/images/placeholder.jpg"
+  }
+]
+
+

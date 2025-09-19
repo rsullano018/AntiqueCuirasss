@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Admin Dashboard - Antique Cuirass</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .content { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        button { background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Simple Admin Dashboard</h1>
+        <p>This is a test admin dashboard without authentication</p>
+    </div>
+    
+    <div class="content">
+        <h2>Admin Functions</h2>
+        <p>If you can see this page, the redirect is working!</p>
+        
+        <button onclick="testProfile()">Test Profile API</button>
+        <button onclick="goToLogin()">Go to Login</button>
+        <button onclick="goToMain()">Go to Main Page</button>
+        
+        <div id="result" style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 4px; white-space: pre-wrap;"></div>
+    </div>
+
+    <script src="assets/js/api/api-client.js"></script>
+    <script>
+        async function testProfile() {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                const response = await apiClient.getProfile();
+                resultDiv.textContent = `Profile API Response:\n${JSON.stringify(response, null, 2)}`;
+            } catch (error) {
+                resultDiv.textContent = `Profile API Error: ${error.message}`;
+            }
+        }
+        
+        function goToLogin() {
+            window.location.href = 'login.html';
+        }
+        
+        function goToMain() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
