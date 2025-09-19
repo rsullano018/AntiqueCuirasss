@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antique Cuirass - Authentic Military Antiques</title>
+    <meta name="description" content="Discover authentic antique military equipment including French Napoleonic cuirasses, medieval armor, and historical weapons.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+    </style>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>Antique Cuirass</h1>
+                        <span class="tagline">Authentic Military Antiques</span>
+                    </a>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="product-catalog.html">Products</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="search-input" placeholder="Search antiques...">
+                        <button class="search-btn" id="search-btn">🔍</button>
+                    </div>
+                    <a href="cart.html" class="cart-link">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-menu">
+                        <a href="login.html" class="login-link" id="login-link">Login</a>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Discover Authentic Military Antiques</h2>
+            <p>From French Napoleonic cuirasses to medieval armor, explore our collection of verified historical artifacts.</p>
+            <div class="hero-actions">
+                <a href="product-catalog.html" class="btn btn-primary">Browse Collection</a>
+                <a href="about.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="assets/images/FrenchNapoleonicCuirassier.jpg" alt="French Napoleonic Cuirass" style="width: 100%; height: 360px; object-fit: cover;">
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2>Featured Items</h2>
+            <div class="product-grid" id="featured-products">
+                <!-- Products will be loaded dynamically -->
+                <div class="loading">Loading featured products...</div>
+            </div>
+            <div class="text-center">
+                <a href="product-catalog.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="assets/images/categories/military-antiques.jpg" alt="Military Antiques">
+                    <div class="category-info">
+                        <h3>Military Antiques</h3>
+                        <p>Historical military artifacts from various periods</p>
+                        <a href="category.html?id=1" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="assets/images/categories/medieval-armor.jpg" alt="Medieval Armor">
+                    <div class="category-info">
+                        <h3>Medieval Armor</h3>
+                        <p>Authentic medieval armor pieces</p>
+                        <a href="category.html?id=2" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="assets/images/categories/cuirasses.jpg" alt="Cuirasses">
+                    <div class="category-info">
+                        <h3>Cuirasses</h3>
+                        <p>Chest armor from various periods</p>
+                        <a href="category.html?id=3" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="assets/images/categories/helmets.jpg" alt="Helmets">
+                    <div class="category-info">
+                        <h3>Helmets</h3>
+                        <p>Military headgear</p>
+                        <a href="category.html?id=4" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="assets/images/categories/weapons.jpg" alt="Weapons">
+                    <div class="category-info">
+                        <h3>Weapons</h3>
+                        <p>Historical weapons</p>
+                        <a href="category.html?id=5" class="btn btn-outline">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Antique Cuirass?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3>Authenticity Verified</h3>
+                    <p>All items are professionally authenticated by experts</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure Shipping</h3>
+                    <p>Specialized packaging and insurance for valuable antiques</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📜</div>
+                    <h3>Detailed Documentation</h3>
+                    <p>Complete provenance and historical information</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💎</div>
+                    <h3>Premium Quality</h3>
+                    <p>Only the finest condition pieces in our collection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Antique Cuirass</h3>
+                    <p>Your trusted source for authentic military antiques and historical artifacts.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="product-catalog.html">All Products</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="category.html?id=1">Military Antiques</a></li>
+                        <li><a href="category.html?id=2">Medieval Armor</a></li>
+                        <li><a href="category.html?id=3">Cuirasses</a></li>
+                        <li><a href="category.html?id=4">Helmets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Antique Cuirass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="assets/js/api/api-client.js?v=202509190600"></script>
+    <script src="assets/js/components/cart-manager.js?v=202509190600"></script>
+    <script src="assets/js/components/product-filter.js"></script>
+    <script src="assets/js/main.js?v=202509190600"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Index page loaded');
+        });
+    </script>
+</body>
+</html>
